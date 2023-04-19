@@ -20,7 +20,7 @@ const Home = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
-
+ 
       try {
         const response = await fetch("https://ai-image-generator-37ik.onrender.com/api/v1/post", {
           method: "GET",

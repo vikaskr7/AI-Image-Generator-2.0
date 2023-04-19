@@ -16,6 +16,15 @@ const CreatePost = () => {
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSurpriseMe = () => {
+    const randomPrompt = getRandomPrompt(form.prompt);
+    setForm({ ...form, prompt: randomPrompt });
+  };
+
   const generateImage = async () => {
     if (form.prompt) {
       try {
@@ -29,9 +38,7 @@ const CreatePost = () => {
             prompt: form.prompt,
           }),
         });
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
+        
         const data = await response.json();
         setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
       } catch (err) {
@@ -73,14 +80,6 @@ const CreatePost = () => {
     }
   };
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSurpriseMe = () => {
-    const randomPrompt = getRandomPrompt(form.prompt);
-    setForm({ ...form, prompt: randomPrompt });
-  };
 
   return (
     <section className="max-w-7xl mx-auto">
