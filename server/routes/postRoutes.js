@@ -5,7 +5,7 @@ import { v2 as cloudinary } from 'cloudinary';
 import Post from '../mongodb/models/post.js';
 
 dotenv.config();
- 
+
 const router = express.Router();
 
 cloudinary.config({
@@ -22,7 +22,7 @@ router.route('/').get(async (req, res) => {
     res.status(500).json({ success: false, message: 'Fetching posts failed, please try again' });
   }
 });
-
+ 
 router.route('/').post(async (req, res) => {
   try { 
     const { name, prompt, photo } = req.body;
